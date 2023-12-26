@@ -24,4 +24,9 @@ public class CustomerServiceFactory implements CustomerService{
     public List<Customer> findAll() {
         return customerDAO.findAll();
     }
+
+    @Override
+    public Customer findById(int id) {
+        return customerDAO.findById(id);
+    }
 }

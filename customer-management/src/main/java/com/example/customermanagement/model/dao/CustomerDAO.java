@@ -11,6 +11,7 @@ public class CustomerDAO {
     private String jdbcUsername = "root";
     private String jdbcPassword = "Modicung2486!";
     private final String SELECT_ALL_CUSTOMER ="select * from customer;";
+    private final String SELECT_CUSTOMER_BY_ID ="select * from customer where id = ?;";
 
     private Connection getConnection() {
         Connection connection = null;
@@ -44,5 +45,28 @@ public class CustomerDAO {
         return customers;
 
     }
+
+    public Customer findById(int id) {
+        Customer customers = null;
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                 customers = new Customer(id, name, email, address);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customers;
+
+    }
+
+
 
 }

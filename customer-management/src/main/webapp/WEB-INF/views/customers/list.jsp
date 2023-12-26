@@ -34,7 +34,7 @@ There are ${requestScope.customers.size()} customer(s) in list.
   <c:forEach items="${requestScope.customers}" var="customer">
     <tr>
     <td>${customer.id}</td>
-    <td><a href="info.jsp?id=${customer.id}">${customer.name}</a></td>
+    <td><a href="/info?id=${customer.id}">${customer.name}</a></td>
     <td>${customer.email}</td>
     <td>${customer.address}</td>
     </tr>
